@@ -1,0 +1,6 @@
+@AuthentikProxy_HostAddress = http://localhost:5001
+
+GET {{AuthentikProxy_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
