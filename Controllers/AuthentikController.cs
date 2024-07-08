@@ -30,7 +30,7 @@ namespace AuthentikProxy.Controllers
                 var stateEncoded = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(stateJson));
 
                 request["state"] = stateEncoded;
-                request["redirect_uri"] = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Authentik/callback";
+                request["redirect_uri"] = $"https://{Request.Host}{Request.PathBase}/Authentik/callback";
 
                 var queryString = string.Join("&", request.Select(kvp => $"{HttpUtility.UrlEncode(kvp.Key)}={HttpUtility.UrlEncode(kvp.Value)}"));
                 var authUrl = $"{_authentikSettings.Url}/application/o/authorize/?{queryString}";
@@ -59,7 +59,7 @@ namespace AuthentikProxy.Controllers
                 }
 
                 request["client_secret"] = client.ClientSecret;
-                request["redirect_uri"] = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Authentik/callback";
+                request["redirect_uri"] = $"https://{Request.Host}{Request.PathBase}/Authentik/callback";
 
                 using var content = new FormUrlEncodedContent(request);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
